@@ -1,0 +1,32 @@
+{
+  "name": "remark-lint-ending-period",
+  "version": "1.0.0",
+  "description": "Checks that all list items ends with point",
+  "author": "Nikita Tsyrlin <nstsyrlin@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wemake-services/remark-lint-ending-period.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "mdast-util-to-string": "^1.0.0",
+    "unist-util-visit": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.3.17",
+    "babel-eslint": "^5.0.0-beta6",
+    "babel-preset-es2015": "^6.3.13",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^2.1.1",
+    "eslint-plugin-react": "^3.11.3"
+  },
+  "scripts": {
+    "build": "babel lib -d dist"
+  },
+  "bugs": {
+    "url": "https://github.com/wemake-services/remark-lint-ending-period/issues"
+  },
+  "homepage": "https://github.com/wemake-services/remark-lint-ending-period#readme",
+  "main": "dist/ending-period.js"
+}
