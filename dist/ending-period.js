@@ -13,15 +13,10 @@ function endingCheck(ast, file, preferred, done) {
 
   visit(ast, 'listItem', function (node) {
     var text = toString(node.children[0].children[0]).trim();
-    var found = false;
-    for (var index = 0; index < endings.length; index++) {
-      var ch = text.substring(text.length - endings[index].length);
-      if (ch === endings[index]) {
-        found = true;
-        break;
-      }
-    }
-    if (!found) {
+    var ch = text.substring(text.length - 1);
+    if (!endings.find(function (x) {
+      return x === ch;
+    })) {
       file.warn('List items have to end up with "' + endings.join(' ') + '": ' + text, node);
     }
   });
