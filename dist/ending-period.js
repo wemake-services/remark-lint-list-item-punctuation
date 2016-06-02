@@ -1,5 +1,7 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 var visit = require('unist-util-visit');
 var toString = require('mdast-util-to-string');
 
@@ -10,15 +12,18 @@ function normalize(text) {
   return text.toLowerCase().trim().replace(removeAtBeginning, '').replace(removeInside, '').replace(replaceWithSpace, ' ');
 }
 
-function endingCheck(ast, file, ending, done) {
-  language || (ending = '.');
+function endingCheck(ast, file, preferred, done) {
+  var ending = '.';
+  if ((typeof preferred === 'undefined' ? 'undefined' : _typeof(preferred)) === 'object' && !('length' in preferred)) {
+    ending = preferred.ending;
+  }
 
-  visit(ast, 'listitem', function (node) {
+  visit(ast, 'listItem', function (node) {
     var item = node;
-    var text = normalize(toString(item.children[0].children[0]));
-    ch = text.charAt(text.length - 1);
+    var text = toString(item.children[0].children[0]);
+    var ch = text.substring(text.length - ending.length);
     if (ch != ending) {
-      file.warn('Wrong list item ending: ' + item.position.start.line + ' ' + text, node);
+      file.warn('List items have to end up with "' + ending + '": ' + text, node);
     }
   });
   done();
