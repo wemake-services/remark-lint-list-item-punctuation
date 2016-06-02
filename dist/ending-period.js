@@ -6,16 +6,23 @@ var visit = require('unist-util-visit');
 var toString = require('mdast-util-to-string');
 
 function endingCheck(ast, file, preferred, done) {
-  var ending = '.';
+  var endings = ['.'];
   if ((typeof preferred === 'undefined' ? 'undefined' : _typeof(preferred)) === 'object' && !('length' in preferred)) {
-    ending = preferred.ending;
+    endings = preferred.ending;
   }
 
   visit(ast, 'listItem', function (node) {
     var text = toString(node.children[0].children[0]).trim();
-    var ch = text.substring(text.length - ending.length);
-    if (ch !== ending) {
-      file.warn('List items have to end up with "' + ending + '": ' + text, node);
+    var found = false;
+    for (var index = 0; index < endings.length; index++) {
+      var ch = text.substring(text.length - endings[index].length);
+      if (ch === endings[index]) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      file.warn('List items have to end up with "' + endings.join(' ') + '": ' + text, node);
     }
   });
   done();
