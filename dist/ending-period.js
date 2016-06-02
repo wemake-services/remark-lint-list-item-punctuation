@@ -7,15 +7,14 @@ var toString = require('mdast-util-to-string');
 
 function endingCheck(ast, file, preferred, done) {
   var endings = ['.'];
-  if ((typeof preferred === 'undefined' ? 'undefined' : _typeof(preferred)) === 'object' && !('length' in preferred)) {
-    endings = preferred.ending;
+  if ((typeof preferred === 'undefined' ? 'undefined' : _typeof(preferred)) === 'object' && !('length' in preferred) && preferred.endings) {
+    endings = preferred.endings;
   }
 
   visit(ast, 'listItem', function (node) {
-    var text = toString(node.children[0].children[0]).trim();
-    var ch = text.substring(text.length - 1);
+    var text = toString(node.children[0]).trim();
     if (!endings.find(function (x) {
-      return x === ch;
+      return x === text.substring(text.length - x.length);
     })) {
       file.warn('List items have to end up with "' + endings.join(' ') + '": ' + text, node);
     }

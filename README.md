@@ -57,7 +57,7 @@ Set up your `.remarkrc`:
     "remark-lint": {
       "external": ["remark-lint-ending-period"],
       "ending-period": {
-        "ending": ["string to finish list item"]
+        "endings": ["string to finish list item"]
         }
     }
   }
