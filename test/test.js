@@ -11,8 +11,8 @@ var directories = fs.readdirSync(__dirname).filter(function(file) {
 directories.forEach(function (dir) { 
 
   describe((dir[0].toUpperCase() + dir.slice(1)).replace("_"," "), function () {
-
-    it(dir, function (done) {
+    var warnings = require(path.join(__dirname, dir, 'expected.js'));
+    it(`Expect ${warnings.length} warning(s) from ending-period`, function (done) {
 
       // Deliberately diversifying our plugin options to increase branch
       // coverage.
@@ -35,7 +35,7 @@ directories.forEach(function (dir) {
           }
           assert.deepEqual(
             file.messages,
-            require(path.join(__dirname, dir, 'expected.js'))
+            warnings
           );
           done();
         }
