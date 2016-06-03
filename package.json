@@ -31,7 +31,7 @@
     "build": "./node_modules/babel-cli/bin/babel.js lib -d dist",
     "coveralls": "npm test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec",
-    "lint": "./node_modules/eslint/bin/eslint.js test/*"
+    "lint": "./node_modules/eslint/bin/eslint.js lib/* test/*"
   },
   "bugs": {
     "url": "https://github.com/wemake-services/remark-lint-ending-period/issues"

@@ -1,9 +1,8 @@
 # remark-lint-ending-period
 
-This [remark-lint](https://github.com/wooorm/remark-lint) rule was created for [free-programming-books-lint](https://github.com/vhf/free-programming-books-lint) to enforce [free-programming-books](https://github.com/vhf/free-programming-books) [formatting guidelines](https://github.com/vhf/free-programming-books/blob/master/CONTRIBUTING.md#formatting).
+[![Build Status](https://travis-ci.org/wemake-services/remark-lint-ending-period.svg?branch=master)](https://travis-ci.org/wemake-services/remark-lint-ending-period) [![Coverage Status](https://coveralls.io/repos/github/wemake-services/remark-lint-ending-period/badge.svg?branch=master)](https://coveralls.io/github/wemake-services/remark-lint-ending-period?branch=master)
 
-This rule ensures that all list items are ended with certain symbol.  
-Default symbol - point. 
+This rule ensures that all list items are ended with certain symbol. The default symbol is `.`.
 
 ```Text
 <!-- Invalid -->
@@ -57,7 +56,7 @@ Set up your `.remarkrc`:
     "remark-lint": {
       "external": ["remark-lint-ending-period"],
       "ending-period": {
-        "endings": ["string to finish list item"]
+        "endings": ["...", ";", "."]
         }
     }
   }
