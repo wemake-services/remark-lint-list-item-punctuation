@@ -8,27 +8,16 @@ var directories = fs.readdirSync(__dirname).filter(function(file) {
   return fs.statSync(path.join(__dirname, file)).isDirectory();
 });
 
-directories.forEach(function (dir) { 
-
-  describe((dir[0].toUpperCase() + dir.slice(1)).replace("_"," "), function () {
-    var warnings = require(path.join(__dirname, dir, 'expected.js'));
-    it(`Expect ${warnings.length} warning(s) from ending-period`, function (done) {
-
-      // Deliberately diversifying our plugin options to increase branch
-      // coverage.
-      var pluginOptions = {
+describe("No list",function() {
+  var warnings = require(path.join(__dirname, "no_list", 'expected.js'));
+  it(`Expect ${warnings.length} warning(s) from ending-period`, function (done) {
+    var pluginOptions = {
         external: ['../dist/ending-period.js']
       };
-      if (dir === 'custom_endings') {
-        pluginOptions['ending-period'] = {
-          endings: ['.', ',', "!?"]
-        };
-      }
-
-      var processor = remark().use(lintPlugin, pluginOptions);
+    var processor = remark().use(lintPlugin, pluginOptions);
 
       processor.process(
-        fs.readFileSync(path.join(__dirname, dir, 'file.md')).toString(),
+        fs.readFileSync(path.join(__dirname, "no_list", 'file.md')).toString(),
         function (err, file) {
           if (err) {
             throw err;
@@ -40,9 +29,56 @@ directories.forEach(function (dir) {
           done();
         }
       );
+  });
+});
 
-    });
+describe("Default endings",function() {
+  var warnings = require(path.join(__dirname, "default_endings", 'expected.js'));
+  it(`Expect ${warnings.length} warning(s) from ending-period`, function (done) {
+    var pluginOptions = {
+        external: ['../dist/ending-period.js']
+      };
+    var processor = remark().use(lintPlugin, pluginOptions);
 
-  })
+      processor.process(
+        fs.readFileSync(path.join(__dirname, "default_endings", 'file.md')).toString(),
+        function (err, file) {
+          if (err) {
+            throw err;
+          }
+          assert.deepEqual(
+            file.messages,
+            warnings
+          );
+          done();
+        }
+      );
+  });
+});
 
+describe("Custom endings",function() {
+  var warnings = require(path.join(__dirname, "custom_endings", 'expected.js'));
+  it(`Expect ${warnings.length} warning(s) from ending-period`, function (done) {
+    var pluginOptions = {
+        external: ['../dist/ending-period.js'],
+        'ending-period': {
+          endings: ['.', ',', "!?"]
+        }
+      };
+    var processor = remark().use(lintPlugin, pluginOptions);
+
+      processor.process(
+        fs.readFileSync(path.join(__dirname, "custom_endings", 'file.md')).toString(),
+        function (err, file) {
+          if (err) {
+            throw err;
+          }
+          assert.deepEqual(
+            file.messages,
+            warnings
+          );
+          done();
+        }
+      );
+  });
 });
