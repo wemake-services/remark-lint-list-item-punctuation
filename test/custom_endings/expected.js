@@ -1,5 +1,5 @@
-var message = require('../createMessage');
+const message = require('../utils').createMessage;
 
 module.exports = [
-  message(4, 11, ['.', ',', "!?"])
+  message(4, 11, ['.', ',', '!?']),
 ];

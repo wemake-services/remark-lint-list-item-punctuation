@@ -13,7 +13,6 @@
     "unist-util-visit": "^1.0.0"
   },
   "devDependencies": {
-
     "babel-cli": "^6.9.0",
     "babel-core": "^6.3.17",
     "babel-eslint": "^5.0.0-beta6",
@@ -31,7 +30,8 @@
   "scripts": {
     "build": "./node_modules/babel-cli/bin/babel.js lib -d dist",
     "coveralls": "npm test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec"
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec",
+    "lint": "./node_modules/eslint/bin/eslint.js test/*"
   },
   "bugs": {
     "url": "https://github.com/wemake-services/remark-lint-ending-period/issues"

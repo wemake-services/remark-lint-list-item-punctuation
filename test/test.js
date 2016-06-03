@@ -1,84 +1,32 @@
-var assert = require('assert');
-var fs = require('fs');
-var remark = require('remark');
-var lintPlugin = require('remark-lint');
-var path = require('path');
+/* global describe it */
 
-var directories = fs.readdirSync(__dirname).filter(function(file) {
-  return fs.statSync(path.join(__dirname, file)).isDirectory();
-});
+const utils = require('./utils');
 
-describe("No list",function() {
-  var warnings = require(path.join(__dirname, "no_list", 'expected.js'));
-  it(`Expect ${warnings.length} warning(s) from ending-period`, function (done) {
-    var pluginOptions = {
-        external: ['../dist/ending-period.js']
-      };
-    var processor = remark().use(lintPlugin, pluginOptions);
 
-      processor.process(
-        fs.readFileSync(path.join(__dirname, "no_list", 'file.md')).toString(),
-        function (err, file) {
-          if (err) {
-            throw err;
-          }
-          assert.deepEqual(
-            file.messages,
-            warnings
-          );
-          done();
-        }
-      );
+// Test cases:
+
+describe('No list items situation', () => {
+  const warnings = utils.loadWarnings('no_list');
+
+  it(`Expect ${warnings.length} warning(s) from ending-period`, done => {
+    utils.assertWarningsLength('no_list', warnings, done);
   });
 });
 
-describe("Default endings",function() {
-  var warnings = require(path.join(__dirname, "default_endings", 'expected.js'));
-  it(`Expect ${warnings.length} warning(s) from ending-period`, function (done) {
-    var pluginOptions = {
-        external: ['../dist/ending-period.js']
-      };
-    var processor = remark().use(lintPlugin, pluginOptions);
 
-      processor.process(
-        fs.readFileSync(path.join(__dirname, "default_endings", 'file.md')).toString(),
-        function (err, file) {
-          if (err) {
-            throw err;
-          }
-          assert.deepEqual(
-            file.messages,
-            warnings
-          );
-          done();
-        }
-      );
+describe('Testing plugin with default settings', () => {
+  const warnings = utils.loadWarnings('default_endings');
+
+  it(`Expect ${warnings.length} warning(s) from ending-period`, done => {
+    utils.assertWarningsLength('default_endings', warnings, done);
   });
 });
 
-describe("Custom endings",function() {
-  var warnings = require(path.join(__dirname, "custom_endings", 'expected.js'));
-  it(`Expect ${warnings.length} warning(s) from ending-period`, function (done) {
-    var pluginOptions = {
-        external: ['../dist/ending-period.js'],
-        'ending-period': {
-          endings: ['.', ',', "!?"]
-        }
-      };
-    var processor = remark().use(lintPlugin, pluginOptions);
 
-      processor.process(
-        fs.readFileSync(path.join(__dirname, "custom_endings", 'file.md')).toString(),
-        function (err, file) {
-          if (err) {
-            throw err;
-          }
-          assert.deepEqual(
-            file.messages,
-            warnings
-          );
-          done();
-        }
-      );
+describe('Testing plugin with overridden endings', () => {
+  const warnings = utils.loadWarnings('custom_endings');
+
+  it(`Expect ${warnings.length} warning(s) from ending-period`, done => {
+    utils.assertWarningsLength('custom_endings', warnings, done, ['.', ',', '!?']);
   });
 });

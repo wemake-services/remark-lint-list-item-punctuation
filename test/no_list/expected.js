@@ -1,4 +1,2 @@
-var message = require('../createMessage');
 
-module.exports = [
-];
+module.exports = [];

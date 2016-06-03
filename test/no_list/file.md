@@ -1,2 +1,2 @@
 Hello world!
-There was no problem there, because no list
+There was no problem there, because there's no list
