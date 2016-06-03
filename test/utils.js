@@ -20,7 +20,8 @@ function createProccessor(endings) {
 
 function assertionCallback(err, file, warnings, done) {
   if (err) { throw err; }
-  assert.deepEqual(file.messages, warnings);
+  // actual, expected
+  assert.deepEqual(warnings, file.messages);
   done();
 }
 
