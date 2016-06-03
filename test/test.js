@@ -24,11 +24,6 @@ describe('The rule passes', function () {
           endings: ['.', ',', "!?"]
         };
       }
-      if (dir === 'blacklist') {
-        pluginOptions['sentence-newline'] = {
-          blacklist: ['e.g.']
-        };
-      }
 
       var processor = remark().use(lintPlugin, pluginOptions);
 
