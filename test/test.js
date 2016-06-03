@@ -8,9 +8,9 @@ var directories = fs.readdirSync(__dirname).filter(function(file) {
   return fs.statSync(path.join(__dirname, file)).isDirectory();
 });
 
-describe('The rule passes', function () {
+directories.forEach(function (dir) { 
 
-  directories.forEach(function (dir) {
+  describe((dir[0].toUpperCase() + dir.slice(1)).replace("_"," "), function () {
 
     it(dir, function (done) {
 
@@ -19,7 +19,7 @@ describe('The rule passes', function () {
       var pluginOptions = {
         external: ['../dist/ending-period.js']
       };
-      if (dir === 'Custom Endings') {
+      if (dir === 'custom_endings') {
         pluginOptions['ending-period'] = {
           endings: ['.', ',', "!?"]
         };

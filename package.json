@@ -29,7 +29,7 @@
     "remark-lint": "^2.0.0"
   },
   "scripts": {
-    "build": "babel lib -d dist",
+    "build": "./node_modules/babel-cli/bin/babel.js lib -d dist",
     "coveralls": "npm test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec"
   },
