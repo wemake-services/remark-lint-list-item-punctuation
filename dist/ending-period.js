@@ -7,7 +7,7 @@ var toString = require('mdast-util-to-string');
 
 function endingCheck(ast, file, preferred, done) {
   var endings = ['.'];
-  if ((typeof preferred === 'undefined' ? 'undefined' : _typeof(preferred)) === 'object' && !('length' in preferred) && preferred.endings) {
+  if ((typeof preferred === 'undefined' ? 'undefined' : _typeof(preferred)) === 'object' && preferred.endings) {
     endings = preferred.endings;
   }
 
@@ -16,7 +16,7 @@ function endingCheck(ast, file, preferred, done) {
     if (!endings.find(function (x) {
       return x === text.substring(text.length - x.length);
     })) {
-      file.warn('List items have to end up with "' + endings.join(' ') + '": ' + text, node);
+      file.warn('List items have to end up with "' + endings.join(' ') + '"', file.offsetToPosition(file.positionToOffset(node.position.end)));
     }
   });
   done();

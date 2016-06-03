@@ -1,0 +1,4 @@
+-   Hello world.
+-   There will be no error!?
+-   No error too,
+-   Error-

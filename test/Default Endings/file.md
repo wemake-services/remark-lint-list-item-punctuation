@@ -1,0 +1,2 @@
+-   Hello world.
+-   There will be error, because no point
