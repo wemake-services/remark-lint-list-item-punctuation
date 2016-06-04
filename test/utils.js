@@ -4,7 +4,6 @@ const remark = require('remark');
 const lintPlugin = require('remark-lint');
 const path = require('path');
 
-
 function createProccessor(endings) {
   const pluginOptions = {
     external: ['../dist/ending-period.js'],
@@ -17,26 +16,23 @@ function createProccessor(endings) {
   return remark().use(lintPlugin, pluginOptions);
 }
 
-
 function assertionCallback(err, file, warnings, done) {
   if (err) { throw err; }
+
   // actual, expected
   assert.deepEqual(warnings, file.messages);
   done();
 }
 
-
 function loadWarnings(fixtureName) {
   return require(path.join(__dirname, fixtureName, 'expected.js'));
 }
-
 
 function loadFixture(fixtureName) {
   return fs.readFileSync(
     path.join(__dirname, fixtureName, 'file.md')
   ).toString();
 }
-
 
 function createMessage(line, column, endings) {
   return {
@@ -55,7 +51,6 @@ function createMessage(line, column, endings) {
     source: 'remark-lint',
   };
 }
-
 
 function assertWarningsLength(fixtureName, warnings, done, endings) {
   const processor = createProccessor(endings);

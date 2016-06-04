@@ -2,7 +2,6 @@
 
 const utils = require('./utils');
 
-
 // Test cases:
 
 describe('No list items situation', () => {
@@ -13,7 +12,6 @@ describe('No list items situation', () => {
   });
 });
 
-
 describe('Testing plugin with default settings', () => {
   const warnings = utils.loadWarnings('default_endings');
 
@@ -22,11 +20,12 @@ describe('Testing plugin with default settings', () => {
   });
 });
 
-
 describe('Testing plugin with overridden endings', () => {
   const warnings = utils.loadWarnings('custom_endings');
 
   it(`Expect ${warnings.length} warning(s) from ending-period`, done => {
-    utils.assertWarningsLength('custom_endings', warnings, done, ['.', ',', '!?']);
+    utils.assertWarningsLength(
+      'custom_endings', warnings, done, ['.', ',', '!?']
+    );
   });
 });
