@@ -74,4 +74,8 @@ remark --no-stdout -u remark-lint="external:[\"remark-lint-ending-period\"]" xxx
 
 Note that the `lint=<lint_options>` option only works with `remark >= 1.1.1`.
 
+## License
+
+MIT, see [LICENSE.md](LICENCE.md) for details.
+
 This `README.md` is based on [this one](https://github.com/chcokr/mdast-lint-sentence-newline/blob/250b106c9e19b387270099cf16f17a84643f8944/README.md) by [@chcokr](https://github.com/chcokr) (MIT).

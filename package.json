@@ -1,6 +1,6 @@
 {
   "name": "remark-lint-ending-period",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Checks that all list items ends with point",
   "author": "Nikita Tsyrlin <nstsyrlin@gmail.com>",
   "contributors": [
