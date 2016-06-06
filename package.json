@@ -1,7 +1,7 @@
 {
-  "name": "remark-lint-ending-period",
+  "name": "remark-lint-list-item-punctuation",
   "version": "1.0.3",
-  "description": "Checks that all list items ends with point",
+  "description": "Checks that all list items ends with certain punctuation",
   "author": "Nikita Tsyrlin <nstsyrlin@gmail.com>",
   "contributors": [
     "Nikita Tsyrlin <nstsyrlin@gmail.com>",
@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wemake-services/remark-lint-ending-period.git"
+    "url": "git+https://github.com/wemake-services/remark-lint-list-item-punctuation.git"
   },
   "files": [
     "lib",
@@ -46,8 +46,8 @@
     "lint": "npm run lint-code && npm run lint-style"
   },
   "bugs": {
-    "url": "https://github.com/wemake-services/remark-lint-ending-period/issues"
+    "url": "https://github.com/wemake-services/remark-lint-list-item-punctuation/issues"
   },
-  "homepage": "https://github.com/wemake-services/remark-lint-ending-period",
-  "main": "dist/ending-period.js"
+  "homepage": "https://github.com/wemake-services/remark-lint-list-item-punctuation",
+  "main": "dist/list-item-punctuation.js"
 }

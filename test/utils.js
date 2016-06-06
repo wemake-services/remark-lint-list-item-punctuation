@@ -6,11 +6,11 @@ const path = require('path');
 
 function createProccessor(endings) {
   const pluginOptions = {
-    external: ['../dist/ending-period.js'],
+    external: ['../dist/list-item-punctuation.js'],
   };
 
   if (endings !== undefined) {
-    pluginOptions['ending-period'] = { endings };
+    pluginOptions['list-item-punctuation'] = { endings };
   }
 
   return remark().use(lintPlugin, pluginOptions);
@@ -47,7 +47,7 @@ function createMessage(line, column, endings) {
       end: { line: null, column: null },
     },
     fatal: false,
-    ruleId: 'ending-period',
+    ruleId: 'list-item-punctuation',
     source: 'remark-lint',
   };
 }

@@ -4,10 +4,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var visit = require('unist-util-visit');
 var toString = require('mdast-util-to-string');
-var position = require('mdast-util-position');
-
-var start = position.start;
-var end = position.end;
+var end = require('mdast-util-position').end;
 
 function endingCheck(ast, file, preferred, done) {
   var endings = ['.'];
@@ -35,5 +32,5 @@ function endingCheck(ast, file, preferred, done) {
 }
 
 module.exports = {
-  'ending-period': endingCheck
+  'list-item-punctuation': endingCheck
 };

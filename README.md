@@ -1,4 +1,4 @@
-# remark-lint-ending-period
+# remark-lint-list-item-punctuation
 
 [![Build Status](https://travis-ci.org/wemake-services/remark-lint-ending-period.svg?branch=master)](https://travis-ci.org/wemake-services/remark-lint-ending-period) [![Coverage Status](https://coveralls.io/repos/github/wemake-services/remark-lint-ending-period/badge.svg?branch=master)](https://coveralls.io/github/wemake-services/remark-lint-ending-period?branch=master)
 
@@ -25,7 +25,7 @@ This rule ensures that all list items are ended with certain symbol. The default
 ```bash
 npm install -g remark
 npm install -g remark-lint
-npm install remark-lint-ending-period # local install!
+npm install remark-lint-list-litem-punctuation # local install!
 ```
 
 Then, set up your `.remarkrc`:
@@ -34,7 +34,7 @@ Then, set up your `.remarkrc`:
 {
   "plugins": {
     "remark-lint": {
-      "external": ["remark-lint-ending-period"]
+      "external": ["remark-lint-list-item-punctuation"]
     }
   }
 }
@@ -54,8 +54,8 @@ Set up your `.remarkrc`:
 {
   "plugins": {
     "remark-lint": {
-      "external": ["remark-lint-ending-period"],
-      "ending-period": {
+      "external": ["remark-lint-list-item-punctuation"],
+      "list-item-punctuation": {
         "endings": ["...", ";", "."]
         }
     }
@@ -68,8 +68,8 @@ Set up your `.remarkrc`:
 ```bash
 npm install -g remark
 npm install -g remark-lint
-npm install -g remark-lint-ending-period # global install!
-remark --no-stdout -u remark-lint="external:[\"remark-lint-ending-period\"]" xxx.md
+npm install -g remark-lint-list-item-punctuation # global install!
+remark --no-stdout -u remark-lint="external:[\"remark-lint-list-item-punctuation\"]" xxx.md
 ```
 
 Note that the `lint=<lint_options>` option only works with `remark >= 1.1.1`.
