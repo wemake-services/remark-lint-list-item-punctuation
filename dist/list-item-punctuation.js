@@ -5,6 +5,15 @@ var toString = require('mdast-util-to-string');
 var end = require('mdast-util-position').end;
 var defaults = require('object.defaults');
 
+function endingTry(ending, text) {
+  if (ending === '') {
+    return (/\w$/.test(text)
+    );
+  }
+
+  return ending === text.substring(text.length - ending.length);
+}
+
 function endingCheck(ast, file, preferred, done) {
   var defaultSettings = {
     // Basic settings:
@@ -32,12 +41,7 @@ function endingCheck(ast, file, preferred, done) {
 
       var endings = i === node.children.length - 1 && settings.final_endings.length > 0 ? settings.final_endings : settings.endings;
       if (!endings.find(function (x) {
-        if (x === '') {
-          return (/\w$/.test(text)
-          );
-        }
-
-        return x === text.substring(text.length - x.length);
+        return endingTry(x, text);
       })) {
         file.warn('List items have to end up with "' + endings.join(' ') + '"', { line: line, column: column });
       }
