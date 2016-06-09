@@ -3,6 +3,7 @@ const fs = require('fs');
 const remark = require('remark');
 const lintPlugin = require('remark-lint');
 const path = require('path');
+const endingCondition = require('../dist/endingCondition.js').endingCondition;
 
 function createProccessor(endings) {
   const pluginOptions = {
@@ -61,4 +62,9 @@ function assertWarningsLength(fixtureName, warnings, done, endings) {
   );
 }
 
-module.exports = { createMessage, assertWarningsLength, loadWarnings };
+function assertCondition(ending, text, result, done) {
+  assert.deepEqual(endingCondition(ending, text), result);
+  done();
+}
+
+module.exports = { createMessage, assertWarningsLength, loadWarnings, assertCondition };

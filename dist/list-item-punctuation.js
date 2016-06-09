@@ -4,15 +4,7 @@ var visit = require('unist-util-visit');
 var toString = require('mdast-util-to-string');
 var end = require('mdast-util-position').end;
 var defaults = require('object.defaults');
-
-function endingTry(ending, text) {
-  if (ending === '') {
-    return (/\w$/.test(text)
-    );
-  }
-
-  return ending === text.substring(text.length - ending.length);
-}
+var endingCondition = require('./endingCondition.js').endingCondition;
 
 function endingCheck(ast, file, preferred, done) {
   var defaultSettings = {
@@ -41,7 +33,7 @@ function endingCheck(ast, file, preferred, done) {
 
       var endings = i === node.children.length - 1 && settings.final_endings.length > 0 ? settings.final_endings : settings.endings;
       if (!endings.find(function (x) {
-        return endingTry(x, text);
+        return endingCondition(x, text);
       })) {
         file.warn('List items have to end up with "' + endings.join(' ') + '"', { line: line, column: column });
       }

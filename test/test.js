@@ -29,3 +29,23 @@ describe('Testing plugin with overridden endings', () => {
     );
   });
 });
+
+describe('Testing ending check condition with "." ending', () => {
+  it('Expect false on "Test text"', done => {
+    utils.assertCondition('.', 'Test text', false, done);
+  });
+
+  it('Expect true on "Test text."', done => {
+    utils.assertCondition('.', 'Test text.', true, done);
+  });
+});
+
+describe('Testing ending check condition with no ending', () => {
+  it('Expect false on "Test text!"', done => {
+    utils.assertCondition('', 'Test text!', false, done);
+  });
+
+  it('Expect true on "Test text"', done => {
+    utils.assertCondition('', 'Test text', true, done);
+  });
+});
