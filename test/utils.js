@@ -5,13 +5,13 @@ const lintPlugin = require('remark-lint');
 const path = require('path');
 const endingCondition = require('../dist/ending-condition.js').endingCondition;
 
-function createProccessor(endings) {
+function createProccessor(settings) {
   const pluginOptions = {
     external: ['../dist/list-item-punctuation.js'],
   };
 
-  if (endings !== undefined) {
-    pluginOptions['list-item-punctuation'] = { endings };
+  if (settings !== undefined) {
+    pluginOptions['list-item-punctuation'] = settings;
   }
 
   return remark().use(lintPlugin, pluginOptions);
@@ -53,8 +53,8 @@ function createMessage(line, column, endings) {
   };
 }
 
-function assertWarningsLength(fixtureName, warnings, done, endings) {
-  const processor = createProccessor(endings);
+function assertWarningsLength(fixtureName, warnings, done, settings) {
+  const processor = createProccessor(settings);
 
   processor.process(
     loadFixture(fixtureName),
