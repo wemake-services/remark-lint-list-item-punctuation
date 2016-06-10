@@ -19,17 +19,15 @@ function endingCheck(ast, file, preferred, done) {
     final_endings: [],
 
     // Loose lists:
-    loose: {
-      endings: ['.'],
-      final_endings: []
-    }
+    loose_endings: []
   };
   var settings = preferred || {};
   defaults(settings, defaultSettings);
 
   visit(ast, 'list', function (node) {
     for (var i = 0; i < node.children.length; i++) {
-      var item = node.children[i].children[0];
+      var listItem = node.children[i];
+      var item = node.loose ? listItem.children[listItem.children.length - 1] : listItem.children[0];
       var text = toString(item).trim();
 
       var _end = end(item);
@@ -37,7 +35,13 @@ function endingCheck(ast, file, preferred, done) {
       var line = _end.line;
       var column = _end.column;
 
-      var endings = i === node.children.length - 1 && settings.final_endings.length > 0 ? settings.final_endings : settings.endings;
+      var endings = [];
+      if (node.loose && settings.loose_endings.length > 0) {
+        endings = settings.loose_endings;
+      } else {
+        endings = i === node.children.length - 1 && settings.final_endings.length > 0 ? settings.final_endings : settings.endings;
+      }
+
       if (!findEnding(endings, text)) {
         file.warn('List items have to end up with "' + endings.join(' ') + '"', { line: line, column: column });
       }

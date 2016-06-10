@@ -28,7 +28,18 @@ describe('Testing plugin with overridden endings', () => {
   it(`Expect ${warnings.length} warning(s) from list-item-punctuation`,
     done => {
       utils.assertWarningsLength(
-        'custom_endings', warnings, done, ['.', ',', '!?']
+        'custom_endings', warnings, done, { endings: ['.', ',', '!?'] }
+      );
+    });
+});
+
+describe('Testing plugin with loose list', () => {
+  const warnings = utils.loadWarnings('loose_list');
+
+  it(`Expect ${warnings.length} warning(s) from list-item-punctuation`,
+    done => {
+      utils.assertWarningsLength(
+        'loose_list', warnings, done, { loose_endings: ['.'] }
       );
     });
 });
