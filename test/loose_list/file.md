@@ -3,5 +3,5 @@
     Error
 
 -   Test loose item
-    loose item line 2
+    loose item line 2.
 
