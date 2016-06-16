@@ -16,17 +16,21 @@ function endingCheck(ast, file, preferred, done) {
   var defaultSettings = {
     // Basic settings:
     endings: ['.'],
-    final_endings: [],
+    finalEndings: [],
 
     // Loose lists:
-    loose_endings: []
+    looseEndings: []
   };
   var settings = preferred || {};
+
+  // Merging the default and actual values:
   defaults(settings, defaultSettings);
 
   visit(ast, 'list', function (node) {
     for (var i = 0; i < node.children.length; i++) {
       var listItem = node.children[i];
+
+      // If list is loose check list line, otherwise check first line
       var item = node.loose ? listItem.children[listItem.children.length - 1] : listItem.children[0];
       var text = toString(item).trim();
 
@@ -36,10 +40,13 @@ function endingCheck(ast, file, preferred, done) {
       var column = _end.column;
 
       var endings = [];
-      if (node.loose && settings.loose_endings.length > 0) {
+
+      if (node.loose && settings.loose_endings.length) {
         endings = settings.loose_endings;
       } else {
-        endings = i === node.children.length - 1 && settings.final_endings.length > 0 ? settings.final_endings : settings.endings;
+        var isFinal = i === node.children.length - 1 && settings.final_endings.length > 0;
+
+        endings = isFinal ? settings.final_endings : settings.endings;
       }
 
       if (!findEnding(endings, text)) {

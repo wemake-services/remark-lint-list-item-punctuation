@@ -39,7 +39,7 @@ describe('Testing plugin with loose list', () => {
   it(`Expect ${warnings.length} warning(s) from list-item-punctuation`,
     done => {
       utils.assertWarningsLength(
-        'loose_list', warnings, done, { loose_endings: ['.'] }
+        'loose_list', warnings, done, { looseEndings: ['.'] }
       );
     });
 });
