@@ -33,6 +33,17 @@ describe('Testing plugin with overridden endings', () => {
     });
 });
 
+describe('Testing plugin with special final ending', () => {
+  const warnings = utils.loadWarnings('final_endings');
+
+  it(`Expect ${warnings.length} warning(s) from list-item-punctuation`,
+    done => {
+      utils.assertWarningsLength(
+        'final_endings', warnings, done, { endings: [';'], finalEndings: ['.'] }
+      );
+    });
+});
+
 describe('Testing plugin with loose list', () => {
   const warnings = utils.loadWarnings('loose_list');
 
