@@ -41,12 +41,12 @@ function endingCheck(ast, file, preferred, done) {
 
       var endings = [];
 
-      if (node.loose && settings.loose_endings.length) {
-        endings = settings.loose_endings;
+      if (node.loose && settings.looseEndings.length) {
+        endings = settings.looseEndings;
       } else {
-        var isFinal = i === node.children.length - 1 && settings.final_endings.length > 0;
+        var isFinal = i === node.children.length - 1 && settings.finalEndings.length > 0;
 
-        endings = isFinal ? settings.final_endings : settings.endings;
+        endings = isFinal ? settings.finalEndings : settings.endings;
       }
 
       if (!findEnding(endings, text)) {
