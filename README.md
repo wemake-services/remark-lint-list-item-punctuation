@@ -1,6 +1,6 @@
 # remark-lint-list-item-punctuation
 
-[![Build Status](https://travis-ci.org/wemake-services/remark-lint-list-litem-punctuation.svg?branch=master)](https://travis-ci.org/wemake-services/remark-lint-list-litem-punctuation) [![Coverage Status](https://coveralls.io/repos/github/wemake-services/remark-lint-list-litem-punctuation/badge.svg?branch=master)](https://coveralls.io/github/wemake-services/remark-lint-list-litem-punctuation?branch=master)
+[![Build Status](https://travis-ci.org/wemake-services/remark-lint-list-item-punctuation.svg?branch=master)](https://travis-ci.org/wemake-services/remark-lint-list-item-punctuation) [![Coverage Status](https://coveralls.io/repos/github/wemake-services/remark-lint-list-item-punctuation/badge.svg?branch=master)](https://coveralls.io/github/wemake-services/remark-lint-list-item-punctuation?branch=master)
 
 This rule ensures that all list items are ended with certain symbol. The default symbol is `.`.
 
