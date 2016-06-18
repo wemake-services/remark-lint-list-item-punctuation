@@ -1,6 +1,6 @@
 {
   "name": "remark-lint-list-item-punctuation",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Checks that all list items ends with certain punctuation",
   "author": "Nikita Tsyrlin <nstsyrlin@gmail.com>",
   "contributors": [
