@@ -25,7 +25,7 @@ This rule ensures that all list items are ended with certain symbol. The default
 ```bash
 npm install -g remark
 npm install -g remark-lint
-npm install remark-lint-list-litem-punctuation # local install!
+npm install remark-lint-list-item-punctuation # local install!
 ```
 
 Note: this package was renamed from `remark-lint-ending-period`.
